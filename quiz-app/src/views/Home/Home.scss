@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Montserrat:wght@300&display=swap');
-
-
 main{
     display: flex;
     flex-direction: column;
@@ -8,13 +5,12 @@ main{
     justify-content: center;
     width: 100%;
     height: 100vh;
+}
 
-    h3{
-        letter-spacing: .2rem;
-        margin: 0 auto 0 0;
-        color: azure;
-        font-size: 2.5rem;
-    }
-    
-
+.login-frame{
+    width: 35rem;
+    height: 40rem;
+    background-color: rgb(245, 197, 197);
+    margin-bottom: auto;
+    border-radius: 1rem;
 }
