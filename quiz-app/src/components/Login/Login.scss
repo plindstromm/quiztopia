@@ -4,7 +4,16 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
     
+}
+
+.form-field{
+  border: none;
+  padding: 1rem;
+  border-radius: 5px;
+  outline: none; 
+  margin-bottom: 2rem;
+  
 }
