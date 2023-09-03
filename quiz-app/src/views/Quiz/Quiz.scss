@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    
+  
+    .main-frame {
+      width: 40rem;
+      height: 30rem;
+      background-color: rgb(200, 161, 161);
+      display: flex;
+      margin-top: 5rem;
+    }
+    .main-frame-right{
+        width: 30%;
+        height: 100%;
+    }
+    .main-frame-left{
+        width: 70%;
+        height: 100%;
+    }
+
+  }

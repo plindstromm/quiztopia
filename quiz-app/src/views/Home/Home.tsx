@@ -13,7 +13,12 @@ function Home() {
             <section className='login-frame'>
                 <Login/>
             </section>
+
+            
+                  
+            <Link to='/Quiz'>
                 <button>till quiz</button>
+                </Link>
         </main>
     )
 }
