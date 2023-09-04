@@ -7,11 +7,12 @@ interface QuestionResponse {
 }
 
 interface AddQuestionProps {
-  quizID: string;
+  quizId: string;
   token: string;
+  quizName: string;
 }
 
-function Addquestion({ quizID, token }: AddQuestionProps) {
+function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
   const [formData, setFormData] = useState<QuestionResponse>({
     question: '',
     answer: '',
@@ -19,19 +20,30 @@ function Addquestion({ quizID, token }: AddQuestionProps) {
 
   const createHandleQuestion = async () => {
     const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz/question';
+    const bodyObject = {
+          name: quizName,
+          question: formData.question,
+          answer: formData.answer,
+          location: {
+          longitude: "24",
+          latitude: "24", 
+      },
+      quizId  
+    };
+
     const settings = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ ...formData, quizID }),
+      body: JSON.stringify(bodyObject),
     };
-  
+
     try {
       const response = await fetch(url, settings);
       const data = await response.json();
-      
+
       if (response.ok) {
         console.log('Question added:', data);
       } else {
@@ -48,11 +60,19 @@ function Addquestion({ quizID, token }: AddQuestionProps) {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    const { value } = e.target;
+    setFormData((newData) =>({
+      ...newData,
+      question: value,
+    }));
+  };
+
+  const handleInputChangee = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((newData) =>({
+      ...newData,
+      answer: value,
+    }));
   };
 
   return (
@@ -69,7 +89,7 @@ function Addquestion({ quizID, token }: AddQuestionProps) {
         name="answer"
         placeholder="svar"
         value={formData.answer}
-        onChange={handleInputChange}
+        onChange={handleInputChangee}
       />
       <button type="submit">lägg till fråga</button>
     </form>
@@ -77,3 +97,5 @@ function Addquestion({ quizID, token }: AddQuestionProps) {
 }
 
 export default Addquestion;
+
+

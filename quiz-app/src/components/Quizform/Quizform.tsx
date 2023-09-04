@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 interface ApiResponse {
   success: boolean;
   error: string;
-  quizId?: string;  // Note the updated key name
+  quizId?: string;
 }
 
 interface CreateQuizRequest {
@@ -16,7 +16,7 @@ function Quizform() {
   const [quizName, setQuizName] = useState<string>('');
   const [responseMessage, setResponseMessage] = useState<string>('');
   const [token, setToken] = useState<string>('');
-  const [quizID, setQuizID] = useState<string>('');
+  const [quizId, setQuizId] = useState<string>('');
 
   useEffect(() => {
     const retrievedToken = localStorage.getItem('authToken');
@@ -39,7 +39,7 @@ function Quizform() {
 
       const data: ApiResponse = await response.json();
       if (data.success) {
-        setQuizID(data.quizId || '');  // Store the quiz ID
+        setQuizId(data.quizId || ''); 
         setResponseMessage('Quiz skapat');
       } else {
         setResponseMessage(data.error);
@@ -63,10 +63,11 @@ function Quizform() {
       <div className="message">
         {responseMessage}
       </div>
-      {responseMessage === 'Quiz skapat' && <Addquestion quizID={quizID} token={token} />}
+      {responseMessage === 'Quiz skapat' && <Addquestion quizId={quizId} token={token} quizName={quizName} />}
     </div>
   );
 }
 
 export default Quizform;
+
 
