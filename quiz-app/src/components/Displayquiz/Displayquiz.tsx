@@ -26,10 +26,10 @@ function Displayquiz(){
   const [selectedQuiz, setSelectedQuiz] = useState<ApiQuiz | null>(null);
 
   useEffect(() => {
-    handleGetQuiz(); // Fetch quizzes on component mount
+    handleGetQuiz(); 
   }, []);
 
-  async function handleGetQuiz () {
+  async function handleGetQuiz () { //make as a const
     const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz';
 
     const response = await fetch(url);

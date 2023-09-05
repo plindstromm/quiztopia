@@ -120,11 +120,11 @@ function Login() {
             <section>
                 <h2> När inloggad </h2>
                 <p> {token ? token : 'Ingen token.'} </p>
-                <button onClick={handleGetUserInfo}> Hämta användarinfo </button>
+                
                 <p> {message2} </p>
             </section>
         </section>
     );
-}
+}/*<button onClick={handleGetUserInfo}> Hämta användarinfo </button>*/
 
 export default Login;
