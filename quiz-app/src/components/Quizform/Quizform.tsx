@@ -55,7 +55,7 @@ function Quizform() {
       <input 
         className='form-field'
         type="text"
-        placeholder="Create quiz"
+        placeholder="Namn på quiz"
         value={quizName}
         onChange ={(e) => setQuizName(e.target.value)}
       />

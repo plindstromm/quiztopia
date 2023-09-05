@@ -9,13 +9,15 @@
     .main-frame {
       width: 40rem;
       height: 30rem;
-      background-color: rgb(200, 161, 161);
+      background-color: rgb(222, 210, 210);
       display: flex;
       margin-top: 5rem;
+      border-radius: 5px;
     }
     .main-frame-right{
         width: 30%;
         height: 100%;
+        
     }
     .main-frame-left{
         width: 70%;

@@ -59,7 +59,7 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
     createHandleQuestion();
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputQuestion = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setFormData((newData) =>({
       ...newData,
@@ -67,7 +67,7 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
     }));
   };
 
-  const handleInputChangee = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setFormData((newData) =>({
       ...newData,
@@ -82,14 +82,14 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
         name="question"
         placeholder="fråga"
         value={formData.question}
-        onChange={handleInputChange}
+        onChange={handleInputQuestion}
       />
       <input
         type="text"
         name="answer"
         placeholder="svar"
         value={formData.answer}
-        onChange={handleInputChangee}
+        onChange={handleInputAnswer}
       />
       <button type="submit">lägg till fråga</button>
     </form>
