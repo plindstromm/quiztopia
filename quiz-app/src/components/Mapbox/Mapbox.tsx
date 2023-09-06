@@ -14,6 +14,7 @@ function Mapbox() {
   const [zoom, setZoom] = useState<number>(10);
 
   const { selectedLocation } = useQuizContext();
+  
 
   useEffect(() => {
     if (mapRef.current || !mapContainer.current) return;

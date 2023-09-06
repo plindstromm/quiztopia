@@ -18,80 +18,77 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
     answer: '',
   });
 
+  //Antog att anvädningområdet är för en mobil device, därav placeras location ut med Geolocation automatiskt och inte manuellt på kartan
+
   const createHandleQuestion = async () => {
-    const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz/question';
-    const bodyObject = {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const coordinates = {
+          longitude: position.coords.longitude.toString(),
+          latitude: position.coords.latitude.toString(),
+        };
+
+        const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz/question';
+        const bodyObject = {
           name: quizName,
           question: formData.question,
           answer: formData.answer,
-          location: {
-          longitude: "24",
-          latitude: "24", 
-      },
-      quizId  
-    };
+          location: coordinates,
+          quizId,
+        };
 
-    const settings = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(bodyObject),
-    };
+        const settings = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(bodyObject),
+        };
 
-    try {
-      const response = await fetch(url, settings);
-      const data = await response.json();
+        try {
+          const response = await fetch(url, settings);
+          const data = await response.json();
 
-      if (response.ok) {
-        console.log('Question added:', data);
-      } else {
-        console.error('Error:', data.error || data);
-      }
-    } catch (error) {
-      console.error('Fetch error:', error);
+          if (response.ok) {
+            console.log('Question added:', data);
+          } else {
+            console.error('Error:', data.error || data);
+          }
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
+      });
+    } else {
+      console.error("Geolocation is not supported by this browser.");
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    createHandleQuestion();
-  };
-
-  const handleInputQuestion = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setFormData((newData) =>({
-      ...newData,
-      question: value,
-    }));
-  };
-
-  const handleInputAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setFormData((newData) =>({
-      ...newData,
-      answer: value,
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
     }));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => { e.preventDefault(); createHandleQuestion(); }}>
       <input
         type="text"
         name="question"
-        placeholder="fråga"
+        placeholder="Question"
         value={formData.question}
-        onChange={handleInputQuestion}
+        onChange={handleInputChange}
       />
       <input
         type="text"
         name="answer"
-        placeholder="svar"
+        placeholder="Answer"
         value={formData.answer}
-        onChange={handleInputAnswer}
+        onChange={handleInputChange}
       />
-      <button type="submit">lägg till fråga</button>
+      <button type="submit">Add Question</button>
     </form>
   );
 }

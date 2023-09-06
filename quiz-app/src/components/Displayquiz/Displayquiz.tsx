@@ -39,6 +39,7 @@ function Displayquiz(){
     
     if ( data.success ) {
       setQuizzes(data.quizzes);
+      console.log(`Number of quizzes: ${data.quizzes.length}`); // Logging the number of quizzes
     } else {
       console.log('Kunde inte hämta data');
     }
