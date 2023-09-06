@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Displayquiz.scss';
+import { useQuizContext } from '../Quizcontext';
 
 interface ApiQuiz {
   questions: {
@@ -24,6 +25,7 @@ function Displayquiz(){
 
   const [quizzes, setQuizzes] = useState<ApiQuiz[]>([]);
   const [selectedQuiz, setSelectedQuiz] = useState<ApiQuiz | null>(null);
+  const { setSelectedLocation, setSelectedQuizQuestions } = useQuizContext();
 
   useEffect(() => {
     handleGetQuiz(); 
@@ -44,6 +46,12 @@ function Displayquiz(){
 
   const handleSelectQuiz = (quiz: ApiQuiz) => {
     setSelectedQuiz(quiz);
+    setSelectedLocation(quiz.questions[0].location);
+    setSelectedQuizQuestions(quiz.questions.map(q => ({
+      latitude: q.location.latitude,
+      longitude: q.location.longitude,
+      question: q.question
+    })));
   };
 
   return (
