@@ -17,7 +17,7 @@ function Home() {
             
                   
             <Link to='/Quiz'>
-                <button>till quiz</button>
+                <button className='quiz-button'>till quiz</button>
                 </Link>
         </main>
     )

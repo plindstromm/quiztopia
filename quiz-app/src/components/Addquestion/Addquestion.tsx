@@ -18,8 +18,9 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
     answer: '',
   });
 
-  //Antog att anvädningområdet är för en mobil device, därav placeras location ut med Geolocation automatiskt och inte manuellt på kartan
-
+  // Antog att anvädningområdet är för en mobil device, därav placeras location ut med Geolocation automatiskt och inte manuellt på kartan
+  // tyckte även det var överflöd att se frågorna på båda kartan och nedantill
+  
   const createHandleQuestion = async () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (position) => {
@@ -52,6 +53,12 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
 
           if (response.ok) {
             console.log('Question added:', data);
+
+            setFormData({
+              question: '',
+              answer: '',
+            });
+
           } else {
             console.error('Error:', data.error || data);
           }

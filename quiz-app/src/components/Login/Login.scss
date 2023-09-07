@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Montserrat:wght@300&display=swap');
+
+
 .login{
 
     width: 100%;
@@ -6,7 +9,13 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
+    .login-header{
+      font-family: Jomhuria;
+      font-size: 4rem;
+      letter-spacing: .2rem;
+      color: rgb(69, 40, 44);
+    }
+ 
 }
 
 .form-field{
