@@ -18,8 +18,9 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
     answer: '',
   });
 
-  // Antog att anvädningområdet är för en mobil device, därav placeras location ut med Geolocation automatiskt och inte manuellt på kartan
-  // tyckte även det var överflöd att se frågorna på båda kartan och nedantill
+  /* Antog att anvädningområdet är för en mobil device där konceptet är att gå runt och placera ut quiz på sin aktuella plats,
+   därav placeras location ut med Geolocation automatiskt och inte manuellt på kartan
+   tyckte även det var överflöd att se frågorna på båda kartan och nedantill*/
   
   const createHandleQuestion = async () => {
     if (navigator.geolocation) {
@@ -82,6 +83,7 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
   return (
     <form onSubmit={(e) => { e.preventDefault(); createHandleQuestion(); }}>
       <input
+      className='question-input'
         type="text"
         name="question"
         placeholder="Question"
@@ -89,6 +91,7 @@ function Addquestion({ quizId, token, quizName }: AddQuestionProps) {
         onChange={handleInputChange}
       />
       <input
+      className='question-input'
         type="text"
         name="answer"
         placeholder="Answer"
