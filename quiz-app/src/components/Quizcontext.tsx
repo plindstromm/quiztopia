@@ -6,6 +6,8 @@ interface Location {
 }
 
 interface QuestionLocation {
+  answer: any;
+  question: any;
   latitude: string;
   longitude: string;
 }
